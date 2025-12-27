@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เพลงประจำวันของเรา</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-main">
+
+    <!-- กันคนเข้าโดยไม่ผ่านรหัส -->
+    <script>
+        if (localStorage.getItem("auth") !== "true") {
+            window.location.href = "index.html";
+        }
+    </script>
+
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center vh-100">
+            <div class="col-md-2"></div>
+
+            <div class="col-md-8">
+                <div class="card bg-card-none border-0 shadow-sm my-3 rounded-5">
+                    <div class="card-body text-center py-5">
+
+                        <h2 class="mb-2">🎧 เพลงประจำวันนี้</h2>
+
+                        <div id="dailySongBox" class="p-4 rounded-4 shadow-sm bg-white bg-opacity-75 mt-3"></div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const songs = [
+            { title: "1001 (You're Lovely)", artist: "SERIOUS BACON", url: "https://youtu.be/iO8ouMrxFM8" },
+            { title: "ความรักกำลังก่อตัว", artist: "นนท์ ธนนท์", url: "https://youtu.be/2NNPwwreJDc" },
+            { title: "พี่ๆ ตัดแว่นให้หน่อย", artist: "SERIOUS BACON", url: "https://youtu.be/KWhIaytWsms" },
+            { title: "ซ้อมมีแฟน (trial)", artist: "Kinkaworn x bamm", url: "https://youtu.be/WeGwwmFRo-E" },
+            { title: "พบรัก", artist: "INK WARUNTORN", url: "https://youtu.be/n2wjOYVC38Y" },
+            { title: "คุณนายตื่นสาย (Wake up please)", artist: "TEMI Feat. KiRANA", url: "https://youtu.be/1VP8JrTHoHo" },
+            { title: "เพลงรักเพลงแรก (Blooming)", artist: "LANDOKMAI", url: "https://youtu.be/N9bashij_7c" },
+            { title: "จีบ", artist: "QLER", url: "https://youtu.be/pk4q4-U891E" },
+            { title: "ธรรมดาแสนพิเศษ", artist: "ANATOMY RABBIT", url: "https://youtu.be/h2VIUdst5y4" },
+            { title: "ซูลูปาก้า ตาปาเฮ้", artist: "themoonwillalwaysbewithme", url: "https://youtu.be/guCCAF-fkNI" },
+            { title: "Wish", artist: "Blackbeans", url: "https://youtu.be/UHpJzCd_lXo" }
+        ];
+
+        const today = new Date().toISOString().slice(0, 10);
+        let hash = 0;
+        for (let i = 0; i < today.length; i++) {
+            hash = today.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        const index = Math.abs(hash) % songs.length;
+        const song = songs[index];
+
+        document.getElementById("dailySongBox").innerHTML = `
+  <h4 class="mb-1">${song.title}</h4>
+  <p class="text-muted mb-3">${song.artist}</p>
+  <a href="${song.url}" target="_blank" class="btn btn-outline-danger rounded-pill px-4">
+    ▶ ฟังเพลงนี้
+  </a>
+`;
+    </script>
+
+</body>
+
+</html>

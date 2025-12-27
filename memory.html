@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Dates</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-main">
+
+    <script>
+        if (localStorage.getItem("auth") !== "true") {
+            window.location.href = "index.html";
+        }
+    </script>
+
+    <div class="container py-5">
+        <h1 class="text-center">ความทรงจำของเรา</h1>
+        <h4 class="text-center mb-4">(ตอนนี้ยังมีตั้งแต่คบกัน แต่กำลังเพิ่มข้อมูลก่อนเราคบกัน และกำลังเพิ่มข้อมูลรูปภาพประกอบ)</h4>
+        <div class="row" id="dateContainer"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const dates = [
+            {
+                title: "งานหนังสือ",
+                image: "images/none.jpg",
+                date: "28 พฤศจิกายน 2568 - 2 ธันวาคม 2568",
+                detail: "วันที่เราไปเดินงาน CMU BOOK FAIR ด้วยกัน เราได้หนังสือมาหลายเล่มเลย ส่วนแฟนได้นิยาย Y มา 2-3 เล่ม"
+            },
+            {
+                title: "งานหนังสือ & ดูดาวที่อ่างแก้ว",
+                image: "images/none.jpg",
+                date: "3 ธันวาคม 2568",
+                detail: "วันนี้ได้ไปงานหนังสือวันสุดท้ายกับแฟน ต่อด้วยการไปอ่างแก้ว นั่งต่อโคมไฟกระดาษ และดูดาวเสาร์กับพระจันทร์"
+            },
+            {
+                title: "zootopia 2",
+                image: "images/none.jpg",
+                date: "10 ธันวาคม 2568",
+                detail: "ไปดู zootopia 2 ที่เข้ามาซักพักแล้วแต่หนังเรื่องนี้น่าดูมากแถมเนื้อเรื่องสนุกสุดๆ"
+            },
+            {
+                title: "สวน อบจ. เชียงใหม่",
+                image: "images/none.jpg",
+                date: "10 ธันวาคม 2568",
+                detail: "ไปเดินเล่นกันที่สวน อบจ. เชียงใหม่ โดยเราได้ให้ดอกไม้แฟนและเดินหาอะไรกินกัน เมื่อยมากแต่วันนี้บรรยากาศดี และมีความสุขมากๆ"
+            },
+            {
+                title: "KitKat Japan",
+                image: "images/none.jpg",
+                date: "15 ธันวาคม 2568",
+                detail: "เอา KitKat รสชาเขียว และ สตอเบอรี่ที่ฝากซื้อจากญี่ปุ่นมาให้แฟน และแฟนชอบมากๆ"
+            },
+            {
+                title: "AVATAR 3 - Fire and Ash",
+                image: "images/none.jpg",
+                date: "17 ธันวาคม 2568",
+                detail: "วันนี้ไปดูหนัง AVATAR 3 - Fire and Ash ในระบบ 3D ฉายวันแรกเลย แฟนอยากดูมากๆ"
+            },
+            {
+                title: "กาดเท X AccBa",
+                image: "images/none.jpg",
+                date: "19 ธันวาคม 2568",
+                detail: "ไปงานของ AccBa ที่กาดเท ได้คูปองเลเซอร์ กับ ลดราคาหมาล่าด้วย และจับไช่ได้ของรางวัลคุ้มๆ สนุกมากได้ปิ้งมาชเมลโล่ด้วย"
+            },
+            {
+                title: "งานสัตว์เลี้ยง มช",
+                image: "images/none.jpg",
+                date: "24 ธันวาคม 2568",
+                detail: "วันนี้อ่างแก้วมีจัดงานสัตว์เลี้ยง วันก่อนแฟนพาโทระไปเฉิดฉาย โทระเป็นเซเลป แฟนได้ตั๋ว IMAX วันนี้ไปกัน 2 คน มีน้องๆน่ารักๆเต็มเลย"
+            },
+            {
+                title: "Nomberone",
+                image: "images/none.jpg",
+                date: "25 ธันวาคม 2568",
+                detail: "ไปเที่ยวคริสมาสต์ ที่วันนิมมาน และเมญ่า โดยแฟนไปซื้อ eveandboy ก่อนจากนั้นไปวันนิมมานต่อ แล้วมากินร้าน Nomberone กันต่อซึ่งโดยรวมวันนี้ดีมากๆ"
+            }
+        ];
+
+        function parseThaiDateSmart(str) {
+            // ถ้ามีช่วงวันที่ ให้ใช้ "วันสุดท้าย"
+            if (str.includes("-")) {
+                str = str.split("-")[1].trim();
+            }
+
+            const months = {
+                "มกราคม": 1, "กุมภาพันธ์": 2, "มีนาคม": 3, "เมษายน": 4, "พฤษภาคม": 5, "มิถุนายน": 6,
+                "กรกฎาคม": 7, "สิงหาคม": 8, "กันยายน": 9, "ตุลาคม": 10, "พฤศจิกายน": 11, "ธันวาคม": 12
+            };
+
+            const day = parseInt(str.match(/\d+/)[0]);
+
+            let month = 1;
+            for (const m in months) {
+                if (str.includes(m)) month = months[m];
+            }
+
+            const yearMatch = str.match(/25\d{2}/);
+            const year = yearMatch ? parseInt(yearMatch[0]) - 543 : 2025;
+
+            return new Date(year, month - 1, day);
+        }
+
+        // เรียงใหม่ → เก่า
+        dates.sort((a, b) => parseThaiDateSmart(b.date) - parseThaiDateSmart(a.date));
+
+        const container = document.getElementById("dateContainer");
+        dates.forEach(d => {
+            container.innerHTML += `
+        <div class="col-md-4 col-6 mb-4">
+            <div class="card border-0 shadow-sm rounded-5 h-100 bg-card-none">
+                <div class="card-body text-center">
+                    <img src="${d.image}" class="image-memory rounded-5 mb-3">
+                    <h4>${d.title}</h4>
+                    <h5 class="text-muted small">${d.date}</h5>
+                    <h6 class="px-md-5">${d.detail}</h6>
+                </div>
+            </div>
+        </div>
+    `;
+        });
+    </script>
+
+
+</body>
+
+</html>

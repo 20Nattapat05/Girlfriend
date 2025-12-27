@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My - Girlfriend</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-main">
+
+<!-- กันคนเข้าโดยไม่ผ่านรหัส -->
+<script>
+if(localStorage.getItem("auth") !== "true"){
+    window.location.href = "index.html";
+}
+</script>
+
+<div class="container">
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="row text-center">
+                    <h1 class="text-main">คนน่ารักกรุณาเลือกเมนู</h1>
+
+                    <div class="col-6">
+                        <a href="time.html" class="text-decoration-none">
+                            <div class="card bg-card border-0 shadow-sm my-3 rounded-5">
+                                <div class="card-body">
+                                    <img src="images/calendar.png" alt="time" class="icon my-3">
+                                    <h4 class="text-light">เราคบกันมานานเท่าไหร่แล้ว</h4>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-6">
+                        <a href="memory.html" class="text-decoration-none">
+                            <div class="card bg-card border-0 shadow-sm my-3 rounded-5">
+                                <div class="card-body">
+                                    <img src="images/coffee.png" alt="date" class="icon my-3">
+                                    <h4 class="text-light">ความทรงจำของเรา</h4>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-6">
+                        <a href="song.html" class="text-decoration-none">
+                            <div class="card bg-card border-0 shadow-sm my-3 rounded-5">
+                                <div class="card-body">
+                                    <img src="images/music-note.png" alt="song" class="icon my-3">
+                                    <h4 class="text-light">เพลงประจำวันนี้</h4>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-6">
+                        <a href="point.html" class="text-decoration-none">
+                            <div class="card bg-card border-0 shadow-sm my-3 rounded-5">
+                                <div class="card-body">
+                                    <img src="images/star.png" alt="point" class="icon my-3">
+                                    <h4 class="text-light">แต้มสะสม</h4>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My - Girlfriend</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-main">
+
+<!-- กันคนเข้าโดยไม่ผ่านรหัส -->
+<script>
+if(localStorage.getItem("auth") !== "true"){
+    window.location.href = "index.html";
+}
+</script>
+
+<div class="container">
+    <div class="row d-flex justify-content-center align-items-center vh-100">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card bg-card-none border-0 shadow-sm my-3 rounded-5">
+                <div class="card-body text-center">
+                    <img src="images/time.png" class="mb-3 image-time rounded-5"><br>
+                    <h2 class="mb-2 text-light">เราคบกันมาแล้ว</h2>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card border-0 text-center rounded-5">
+                                <div class="card-body">
+                                    <h2 id="days">0</h2>
+                                    <h4 class="mb-0">วัน</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card border-0 text-center rounded-5">
+                                <div class="card-body">
+                                    <h2 id="hours">0</h2>
+                                    <h4 class="mb-0">ชั่วโมง</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card border-0 text-center rounded-5">
+                                <div class="card-body">
+                                    <h2 id="minutes">0</h2>
+                                    <h4 class="mb-0">นาที</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card border-0 text-center rounded-5">
+                                <div class="card-body">
+                                    <h2 id="seconds">0</h2>
+                                    <h4 class="mb-0">วินาที</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+const startDate = new Date("2025-11-26T22:00:00");
+
+function updateTimer() {
+    const now = new Date();
+    let diff = now - startDate;
+    if (diff < 0) return;
+
+    const totalSeconds = Math.floor(diff / 1000);
+    const totalMinutes = Math.floor(totalSeconds / 60);
+    const totalHours = Math.floor(totalMinutes / 60);
+    const days = Math.floor(totalHours / 24);
+
+    const hours = totalHours % 24;
+    const minutes = totalMinutes % 60;
+    const seconds = totalSeconds % 60;
+
+    document.getElementById("days").innerText = days;
+    document.getElementById("hours").innerText = hours.toString().padStart(2,'0');
+    document.getElementById("minutes").innerText = minutes.toString().padStart(2,'0');
+    document.getElementById("seconds").innerText = seconds.toString().padStart(2,'0');
+}
+
+setInterval(updateTimer,1000);
+updateTimer();
+</script>
+
+</body>
+</html>
